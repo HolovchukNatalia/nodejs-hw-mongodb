@@ -16,7 +16,7 @@ export const createContact = async (payload) => {
 };
 
 export const updateContact = async (contactId, payload, options = {}) => {
-  const rawResult = await contactsCollection.findByIdAndUpdate(
+  const rawResult = await contactsCollection.findOneAndUpdate(
     { _id: contactId },
     payload,
     {
