@@ -4,7 +4,7 @@ import {
   logoutUser,
   refreshUsersSession,
 } from '../services/auth.js';
-import { ONE_DAY } from '../constants/index.js';
+import { ONE_DAY } from '../contacts/index.js';
 
 const setupSession = (res, session) => {
   res.cookie('refreshToken', session.refreshToken, {
