@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-export const createContactShema = Joi.object({
+export const createContactSchema = Joi.object({
   name: Joi.string().min(3).max(20).required(),
   phoneNumber: Joi.string()
     .pattern(/^\+380\d{9}$/)
@@ -9,11 +9,11 @@ export const createContactShema = Joi.object({
     })
     .required(),
   email: Joi.string().email().optional().allow(null),
-  isFavorite: Joi.boolean(),
+  isFavourite: Joi.boolean(),
   contactType: Joi.string().valid('home', 'personal', 'work').required(),
 });
 
-export const updateContactShema = Joi.object({
+export const updateContactSchema = Joi.object({
   name: Joi.string().min(3).max(20),
   phoneNumber: Joi.string()
     .pattern(/^\+380\d{9}$/)
@@ -21,6 +21,6 @@ export const updateContactShema = Joi.object({
       'string.pattern.base': 'Phone number must be in the format +380XXXXXXXXX',
     }),
   email: Joi.string().email().optional().allow(null),
-  isFavorite: Joi.boolean(),
+  isFavourite: Joi.boolean(),
   contactType: Joi.string().valid('home', 'personal', 'work'),
 }).min(1);

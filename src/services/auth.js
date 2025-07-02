@@ -2,7 +2,7 @@ import { randomBytes } from 'crypto';
 import bcrypt from 'bcrypt';
 import createHttpError from 'http-errors';
 import { UsersCollection } from '../db/models/user.js';
-import { FIFTEEN_MINUTES, ONE_DAY } from '../contacts/index.js';
+import { FIFTEEN_MINUTES, ONE_DAY } from '../constants/index.js';
 import { SessionsCollection } from '../db/models/session.js';
 
 const createSession = () => {
@@ -32,7 +32,7 @@ export const registerUser = async (payload) => {
 export const loginUser = async (payload) => {
   const user = await UsersCollection.findOne({ email: payload.email });
   if (!user) {
-    throw createHttpError(404, 'User not found');
+    throw createHttpError(401, 'User not found');
   }
   const isEqual = await bcrypt.compare(payload.password, user.password);
 
