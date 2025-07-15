@@ -1,0 +1,38 @@
+tags:
+  - Auth
+security:
+  - bearerAuth: []
+summary: Register a new user
+operationId: registerUser
+description: 'Register a new user with name, email and password'
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - name
+          - email
+          - password
+        properties:
+          name:
+            type: string
+            example: John
+            description: User name
+          email:
+            type: string
+            format: email
+            example: username@gmail.com
+            description: Email user's
+          password:
+            type: string
+            example: password
+            description: User's password
+responses:
+  '201':
+    $ref: ../../components/responses/201register.yaml
+  '400':
+    description: Invalid request body - Validation error
+  '409':
+    description: Email already exists

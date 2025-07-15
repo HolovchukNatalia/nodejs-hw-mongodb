@@ -1,0 +1,49 @@
+tags:
+  - Auth
+summary: Login user
+operationId: loginUser
+description: 'Authenticate user with email and password and receive access token'
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - email
+          - password
+        properties:
+          email:
+            type: string
+            format: email
+            example: 'user@gmail.com'
+          password:
+            type: string
+            example: 'password'
+security: []
+responses:
+  '200':
+    description: Successfully logged in user
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Successfully logged in an user!'
+            data:
+              type: object
+              properties:
+                accessToken:
+                  type: string
+                  example: 'L9AkT21rn*z+7-MkP55HpWhzoRg2nQaKFZHY5sXt'
+  '401':
+    $ref: ../../components/responses/401.yaml
